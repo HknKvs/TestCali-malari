@@ -1,4 +1,4 @@
-package December27_22;
+package December28_22;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
@@ -15,30 +15,29 @@ public class Test01 {
 
     //1- Bir test class’i olusturun ilgili ayarlari yapin
     //2- https://www.automationexercise.com/ adresine gidin
-    //3- Category bolumundeki elementleri locate edin
-    //4- Category bolumunde 3 element oldugunu test edin
-    //5- Category isimlerini yazdirin
+    //3- Sayfada 147 adet link bulundugunu test edin.
+    //4- Products linkine tiklayin
+    //5- special offer yazisinin gorundugunu test edin
     //6- Sayfayi kapatin
 
     @Test
-    public void test01() {
+    public void test01() throws InterruptedException {
 
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get("https://www.automationexercise.com/");
-        List <WebElement> categorySayisi= driver.findElements(By.xpath("//div[@id='accordian']"));
-
-        for (WebElement each:categorySayisi
-        ) {
-            System.out.println(each.getText());
-            System.out.println(categorySayisi.size());
-        }
-
+        List <WebElement> linkSayisi=driver.findElements(By.tagName("a"));
+        System.out.println(linkSayisi.size());
+        int actualLinkSayisi=linkSayisi.size();
+        int expectedLinkSayisi=147;
+        Assert.assertEquals(expectedLinkSayisi,actualLinkSayisi);
+        Thread.sleep(3000);
         driver.close();
 
-
     }
+
+
 
 }
