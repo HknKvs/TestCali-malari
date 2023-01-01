@@ -10,6 +10,8 @@ import java.time.Duration;
 
 public class TestBase {
 
+    protected String https="https://";
+    protected String com=".com";
     protected WebDriver driver;
 
     @Before
@@ -21,8 +23,8 @@ public class TestBase {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    @After
+    /*@After
     public void teardown() {
         driver.quit();
-    }
+    }*/
 }
